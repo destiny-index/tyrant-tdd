@@ -41,6 +41,12 @@ class TestTyrant < Minitest::Test
     assert_nil @tyrant[:key]
   end
 
+  def test_remove_nil_raises_argument_error
+    assert_raises ArgumentError do
+      @tyrant.remove nil
+    end
+  end
+
   def test_remove_missing_key_does_nothing
     @tyrant.remove :key
 

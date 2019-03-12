@@ -2,6 +2,8 @@ require 'socket'
 require 'tyrant_socket'
 
 class Tyrant
+  include Enumerable
+
   attr_reader :socket
 
   def []=(key, value)
@@ -32,6 +34,7 @@ class Tyrant
   end
 
   def remove(key)
+    raise ArgumentError if key == nil
     socket.write_operation Operation::REMOVE
     socket.write_key key
 
