@@ -55,4 +55,22 @@ class TestTyrant < Minitest::Test
     @tyrant[:key] = 'value'
     assert_equal 1, @tyrant.size 
   end
+
+  def test_iterating_over_empty_map
+    @tyrant.each do 
+      flunk
+    end
+  end
+
+  def test_iterating_over_two_element_map
+    @tyrant[:key1] = 'value'
+    @tyrant[:key2] = 'value'
+
+    count = 0
+    @tyrant.each do |key, value|
+      count += 1
+      assert_equal value, 'value'
+    end
+    assert_equal 2, count
+  end
 end
